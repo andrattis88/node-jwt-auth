@@ -28,16 +28,16 @@ verifyToken = (req, res, next) => {
 
 
 isAdmin = (req, res, next) => {
-    Usuario.findByPk(req.body.usuario_id).then(usuario => {
+    Usuario.findByPk(req.usuario_id).then(usuario => {
         usuario.getPerfis().then(perfis => {
             for (let i = 0; i < perfis.length; i++) {
-                if (perfis[i].nome === "admin") {
+                if (perfis[i].nome === "administrador") {
                     next();
                     return;
                 }
             }
 
-            res.status(403).semd({
+            res.status(403).send({
                 message : "Require Admin Role!"
             });
 
@@ -47,11 +47,12 @@ isAdmin = (req, res, next) => {
 }
 
 isModerator = (req, res, next) => {
-    Usuario.findByPk(req.body.usuario_id).then(usuario => {
+    console.log(req.usuario_id)
+    Usuario.findByPk(req.usuario_id).then(usuario => {
         usuario.getPerfis().then(perfis => {
             for (let i = 0; i < perfis.length; i++) {
                 
-                if (perfis[i].nome === "moderator") {
+                if (perfis[i].nome === "moderador") {
                     next();
                     return;
                 }
@@ -63,7 +64,7 @@ isModerator = (req, res, next) => {
             
             return;
         });
-    });
+    })
 }
 
 isModeratorOrAdmin = (req, res, next) => {

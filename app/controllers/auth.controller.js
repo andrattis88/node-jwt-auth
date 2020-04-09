@@ -1,9 +1,9 @@
 const db = require("../models");
-const config = require("../config/auth.config,js");
+const config = require("../config/auth.config.js");
 const Usuario = db.usuario;
-const Perfil = deb.perfil;
+const Perfil = db.perfil;
 
-const Op = db.sequelize.Op;
+const Op = db.Sequelize.Op;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
