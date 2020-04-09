@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
-const app = exparess();
+const app = express();
 
 var corsOptions = {
     origin : "http://localhost:8081"
@@ -35,6 +35,9 @@ function initial() {
 app.get("/", (req, res) => {
     res.json({ message : "Welcome to the application"});
 });
+
+require("./app/routes/auth.routes")(app);
+require("./app/routes/usuario.routes")(app);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
